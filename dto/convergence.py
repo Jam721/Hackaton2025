@@ -1,9 +1,6 @@
 from pydantic import BaseModel
+from datetime import datetime
 
 class Convergence(BaseModel):
-    semiMajorAxis: float
-    eccentricity: float
-    inclination: float
-    longitudeOfAscendingNode: float
-    argumentOfPeriapsis: float
-    timeOfPeriapsisPassage: float
+    distance: float
+    convTime: datetime

@@ -1,6 +1,9 @@
 from pydantic import BaseModel
-from datetime import datetime
 
 class Orbit(BaseModel):
-    distance: float
-    convTime: datetime
+    semiMajorAxis: float
+    eccentricity: float
+    inclination: float
+    longitudeOfAscendingNode: float
+    argumentOfPeriapsis: float
+    timeOfPeriapsisPassage: float
