@@ -14,3 +14,4 @@ uv.lock
 observations.json
 calculation/main.py
 calculation/aprox.py
+test.py
