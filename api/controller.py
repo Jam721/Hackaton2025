@@ -6,13 +6,13 @@ from calculation.orbit_aproxymator import *
 
 router = APIRouter(prefix="/users", tags=["calc"])
 
-@router.post("/conv/", response_model=Convergence)
+@router.post("/conv/", response_model=Orbit)
 async def get_convergence(coords: list[Coordinate]):
     points, dates = extract(coords)
     orbit, _, _ = aprox(points)
     return orbit
 
-@router.get("/orbit/", response_model=Orbit)
+@router.post("/orbit/", response_model=Convergence)
 async def get_orbit(coords: list[Coordinate]):
     points, dates = extract(coords)
     _, h, k = aprox(points)

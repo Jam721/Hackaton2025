@@ -40,7 +40,14 @@ def initialize(points):
 
 # МНК аппроксимация
 def aprox(points):
-    out = Orbit()
+    out = Orbit(
+        semiMajorAxis=0.0,
+        eccentricity=0.0,
+        inclination=0.0,
+        longitudeOfAscendingNode=0.0,
+        argumentOfPeriapsis=0.0,
+        timeOfPeriapsisPassage=0.0
+    )
     res = least_squares(ellipse_residuals, initialize(points), args=(points[:,0], points[:,1]))
     h, k, out.semiMajorAxis, b, theta = res.x
     out.eccentricity = 1 - b/out.semiMajorAxis  # эксцентриситет (сплюснутость)
@@ -66,7 +73,10 @@ def aprox(points):
 
 # --- Минимальное расстояние до Земли ---
 def get_conv(dates, h, k):
-    conv = Convergence()
+    conv = Convergence(
+        convTime=0.0,
+        distance=0.0
+    )
     t_mid = Time(dates[len(dates)//2])
     with solar_system_ephemeris.set('builtin'):
         pos_earth, _ = get_body_barycentric_posvel('earth', t_mid)
