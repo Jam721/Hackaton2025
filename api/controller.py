@@ -3,7 +3,6 @@ from dto.convergence import Convergence
 from dto.orbit import Orbit
 from dto.coordinates import Coordinate
 from calculation.orbit_aproxymator import calculate_orbit
-from test import execute
 
 router = APIRouter(prefix="/users", tags=["calc"])
 
