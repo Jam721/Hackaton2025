@@ -9,7 +9,7 @@ var configuration = builder.Configuration;
 
 services.AddCors(options => {
     options.AddPolicy("ReactPolicy", policy => {
-        policy.WithOrigins("http://172.20.10.3:5173")
+        policy.WithOrigins("http://localhost:5173")
             .AllowAnyHeader()
             .AllowAnyMethod()
             .AllowCredentials();

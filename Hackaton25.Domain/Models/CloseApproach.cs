@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace Hackaton25.Domain.Models;
 
@@ -7,7 +8,9 @@ public class CloseApproach
     [Key]
     public int Id { get; set; }
     
-    public DateTime ApproachDate { get; set; }         // Дата максимального сближения
+    [JsonPropertyName("convTime")]
+    public DateTime ConvTime { get; set; }         // Дата максимального сближения
+    [JsonPropertyName("distance")]
     public double Distance { get; set; }               // Расстояние (а.е.)
     
     // Навигационные свойства

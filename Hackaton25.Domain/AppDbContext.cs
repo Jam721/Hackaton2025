@@ -12,6 +12,13 @@ public class AppDbContext(DbContextOptions<AppDbContext> context) : DbContext(co
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<CloseApproach>()
+            .Property(e => e.ConvTime)
+            .HasConversion(
+                v => v.ToUniversalTime(),
+                v => DateTime.SpecifyKind(v, DateTimeKind.Utc)
+            );
+        
         // Данные для комет
         modelBuilder.Entity<Comet>().HasData(
             new Comet
@@ -90,7 +97,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> context) : DbContext(co
             new CloseApproach
             {
                 Id = 1,
-                ApproachDate = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc),
+                ConvTime = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc),
                 Distance = 0.586,
                 CometId = 1,
                 OrbitalParametersId = 1
@@ -98,7 +105,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> context) : DbContext(co
             new CloseApproach
             {
                 Id = 2,
-                ApproachDate = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc),
+                ConvTime = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc),
                 Distance = 1.315,
                 CometId = 2,
                 OrbitalParametersId = 2
@@ -106,7 +113,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> context) : DbContext(co
             new CloseApproach
             {
                 Id = 3,
-                ApproachDate = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc),
+                ConvTime = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc),
                 Distance = 0.42,
                 CometId = 3,
                 OrbitalParametersId = 3
@@ -114,7 +121,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> context) : DbContext(co
             new CloseApproach
             {
                 Id = 4,
-                ApproachDate = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc),
+                ConvTime = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc),
                 Distance = 0.477,
                 CometId = 1,
                 OrbitalParametersId = 1

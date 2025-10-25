@@ -1,5 +1,4 @@
 ﻿using System.Text.Json;
-using System.Text.Json.Serialization;
 using Hackaton25.Domain;
 using Hackaton25.Domain.Models;
 using Hackaton25.Dtos;
@@ -28,7 +27,7 @@ public class OrbitCalculationController(
                     o.Declination))
                 .ToListAsync(ct);
 
-            if (!observations.Any())
+            if (observations.Count == 0)
             {
                 return NotFound($"No observations found for comet {cometId}");
             }
@@ -86,27 +85,68 @@ public class OrbitCalculationController(
     [HttpGet("last_params/{cometId:int}/{orbitalParametersId:int}")]
     public async Task<IActionResult> LastData(int cometId, int orbitalParametersId, CancellationToken ct)
     {
-        var client = new HttpClient();
-        var response = await client.GetAsync("url_запроса", ct);
-
-        if (!response.IsSuccessStatusCode)
+        try
         {
-            return StatusCode((int)response.StatusCode, "Ошибка получения данных");
+            var observations = await context.Observations
+                .Where(o => o.CometId == cometId)
+                .Select(o => new SendObservationResponse(
+                    o.ObservationTime, 
+                    o.RightAscension, 
+                    o.Declination))
+                .ToListAsync(ct);
+
+            if (observations.Count == 0)
+            {
+                return NotFound($"No observations found for comet {cometId}");
+            }
+
+            var client = factory.CreateClient();
+        
+            var requestOptions = new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+            };
+            
+            var response = await client.PostAsJsonAsync(
+                "http://localhost:8000/users/orbit/", 
+                observations,
+                requestOptions,
+                ct);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                var errorContent = await response.Content.ReadAsStringAsync(ct);
+                return StatusCode((int)response.StatusCode, 
+                    $"Ошибка получения данных: {errorContent}");
+            }
+
+            var json = await response.Content.ReadAsStringAsync(ct);
+            Console.WriteLine($"Received JSON: {json}");
+
+            // Добавьте опции для десериализации
+            var responseOptions = new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                PropertyNameCaseInsensitive = true
+            };
+
+            var closeAppeoach = JsonSerializer.Deserialize<CloseApproach>(json, responseOptions);
+
+            if (closeAppeoach == null)
+            {
+                return BadRequest("Невозможно десериализовать данные");
+            }
+        
+            closeAppeoach.CometId = cometId;
+
+            await context.CloseApproaches.AddAsync(closeAppeoach, ct);
+            await context.SaveChangesAsync(ct);
+
+            return Ok(closeAppeoach.MapCloseApproach());
         }
-
-        var json = await response.Content.ReadAsStringAsync(ct);
-        var closeApproach = JsonSerializer.Deserialize<CloseApproach>(json);
-
-        if (closeApproach == null)
+        catch (Exception ex)
         {
-            return BadRequest("Невозможно десериализовать данные");
+            return StatusCode(500, $"Внутренняя ошибка сервера: {ex.Message}");
         }
-        closeApproach.CometId = cometId;
-        closeApproach.OrbitalParametersId = orbitalParametersId;
-
-        await context.CloseApproaches.AddAsync(closeApproach, ct);
-        await context.SaveChangesAsync(ct);
-
-        return Ok(closeApproach.MapCloseApproach());
     }
 }

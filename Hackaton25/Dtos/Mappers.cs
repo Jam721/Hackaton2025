@@ -39,10 +39,9 @@ public static class Mappers
     public static CloseApproachResponse MapCloseApproach(this CloseApproach model)
     {
         return new CloseApproachResponse(
-            model.ApproachDate,
+            model.ConvTime,
             model.Distance,
-            model.CometId,
-            model.OrbitalParametersId
+            model.CometId
             );
     }
     

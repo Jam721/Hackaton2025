@@ -1,7 +1,6 @@
 ﻿namespace Hackaton25.Dtos.Response;
 
 public record CloseApproachResponse(
-    DateTime ApproachDate,
+    DateTime ConvTime,
     double Distance,
-    int CometId,
-    int OrbitalParametersId);
+    int CometId);
