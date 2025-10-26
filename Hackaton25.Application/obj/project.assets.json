@@ -772,30 +772,31 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\artur\\.nuget\\packages\\": {},
-    "D:\\VisualStudio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\0\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Desktop\\Hackaton2025\\Hackaton25.Application\\Hackaton25.Application.csproj",
+      "projectUniqueName": "C:\\Programming\\Hackaton2025\\Hackaton25.Application\\Hackaton25.Application.csproj",
       "projectName": "Hackaton25.Application",
-      "projectPath": "D:\\Desktop\\Hackaton2025\\Hackaton25.Application\\Hackaton25.Application.csproj",
-      "packagesPath": "C:\\Users\\artur\\.nuget\\packages\\",
-      "outputPath": "D:\\Desktop\\Hackaton2025\\Hackaton25.Application\\obj\\",
+      "projectPath": "C:\\Programming\\Hackaton2025\\Hackaton25.Application\\Hackaton25.Application.csproj",
+      "packagesPath": "C:\\Users\\0\\.nuget\\packages\\",
+      "outputPath": "C:\\Programming\\Hackaton2025\\Hackaton25.Application\\obj\\",
       "projectStyle": "PackageReference",
-      "UsingMicrosoftNETSdk": false,
       "fallbackFolders": [
-        "D:\\VisualStudio\\Shared\\NuGetPackages"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\artur\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config"
+        "C:\\Users\\0\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
@@ -803,8 +804,8 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "D:\\Desktop\\Hackaton2025\\Hackaton25.Domain\\Hackaton25.Domain.csproj": {
-              "projectPath": "D:\\Desktop\\Hackaton2025\\Hackaton25.Domain\\Hackaton25.Domain.csproj"
+            "C:\\Programming\\Hackaton2025\\Hackaton25.Domain\\Hackaton25.Domain.csproj": {
+              "projectPath": "C:\\Programming\\Hackaton2025\\Hackaton25.Domain\\Hackaton25.Domain.csproj"
             }
           }
         }
@@ -849,7 +850,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.202/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
