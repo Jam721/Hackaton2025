@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import {createCookie, Link} from 'react-router-dom';
 import './auth.css';
 
 const API_BASE_URL = 'http://172.20.10.2:5075/api';
@@ -30,8 +30,10 @@ export function Login() {
         throw new Error(data.message || 'Ошибка авторизации');
       }
 
-      localStorage.setItem('authToken', data.token);
-      
+      //localStorage.setItem('authToken', data.token);
+      document.cookie = `tasty=${encodeURIComponent(data.token)}; path=/; max-age=604800`;
+
+
       window.location.href = '/';
     } catch (err) {
       setError(err.message || 'Ошибка соединения');

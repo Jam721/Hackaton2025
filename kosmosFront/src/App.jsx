@@ -11,6 +11,9 @@ import { AllComets } from "./pages/comet/comets"
 
 import { Home } from "./pages/Home/Home"
 import CometDetail from "./pages/CometDetail/CometDetail"
+import ObservationsPage from "./pages/ObservationsPage/ObservationsPage.jsx";
+import ObservationDetailPage from "./pages/ObservationDetailPage/ObservationDetailPage.jsx";
+import CalculationsPage from "./pages/CalculationsPage/CalculationsPage.jsx";
 
 function isAuthenticated() {
   return Boolean(localStorage.getItem('authToken'));
@@ -26,7 +29,9 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/all" element={<Main />} />
+          <Route path="/observations" element={<ObservationsPage />} />
+          <Route path="/observations/:id" element={<ObservationDetailPage />} />
+          <Route path="/calculations/:cometId" element={<CalculationsPage />} />
         <Route
           path="/mine"
           element={
