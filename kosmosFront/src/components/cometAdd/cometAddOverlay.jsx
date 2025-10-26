@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./cometAddOverlay.css";
 
-// Pass this function in from parent, or import API here!
+const API_BASE_URL = 'http://172.20.10.2:5075/api';
+
 async function handleCreateCometApi(params) {
   const formData = new FormData();
   if (params.Name) formData.append("Name", params.Name);
@@ -11,19 +12,15 @@ async function handleCreateCometApi(params) {
   if (params.Discoverer) formData.append("Discoverer", params.Discoverer);
   if (params.File) formData.append("File", params.File);
 
-  //todo
-  const response = await fetch("/api/comet/create", { 
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem('authToken') || ''}`
-    },
+  const response = await fetch(`${API_BASE_URL}/comet/create`, {
+  method: "POST",
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem('authToken') || ''}`
+  },
     body: formData,
   });
-  if (!response.ok) {
-    throw new Error("Ошибка создания кометы");
-  }
-  return await response.json();
 }
+
 
 export function CometAddOverlay({ onAdd, onClose }) {
   const [name, setName] = useState("");
@@ -32,9 +29,9 @@ export function CometAddOverlay({ onAdd, onClose }) {
   const [discoveryDate, setDiscoveryDate] = useState("");
   const [discoverer, setDiscoverer] = useState("");
   const [file, setFile] = useState(null);
-
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
 
   async function handleSubmit(e) {
     e.preventDefault();

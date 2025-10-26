@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './auth.css';
 
+const API_BASE_URL = 'http://172.20.10.2:5075/api';
+
 export function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -13,9 +15,9 @@ export function Login() {
     setError('');
     setIsLoading(true);
 
-    //todo
+
     try {
-      const response = await fetch('{}/identity/User/Login', {
+      const response = await fetch(`${API_BASE_URL}/user/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         credentials: 'include',
@@ -29,6 +31,7 @@ export function Login() {
       }
 
       localStorage.setItem('authToken', data.token);
+      
       window.location.href = '/';
     } catch (err) {
       setError(err.message || 'Ошибка соединения');

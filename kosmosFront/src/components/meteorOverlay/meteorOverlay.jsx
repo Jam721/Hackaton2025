@@ -6,7 +6,7 @@ export function MeteorOverlay({ onClose }) {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        async function fetchCometData() {
+        async function fetchCometData() { 
             try {
                 const response = await fetch("http://172.20.10.2:5075/api/comet");
                 

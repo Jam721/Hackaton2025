@@ -1,0 +1,153 @@
+.container {
+    max-width: 100%;
+    padding: 0;
+    background: transparent;
+    backdrop-filter: none;
+    border: none;
+    box-shadow: none;
+    margin: 0;
+}
+
+.header {
+    text-align: left;
+    margin-bottom: 30px;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.name {
+    font-size: 3.5rem;
+    margin: 0 0 10px 0;
+    background: linear-gradient(45deg, #64ffda, #4fc3f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+}
+
+.designation {
+    font-size: 1.4rem;
+    color: #8888cc;
+    margin: 0;
+    font-style: italic;
+}
+
+.section {
+    margin-bottom: 25px;
+}
+
+.sectionTitle {
+    font-size: 1.5rem;
+    color: #4fc3f7;
+    margin: 0 0 15px 0;
+    font-weight: 600;
+}
+
+.description {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #cccccc;
+    margin: 0;
+}
+
+.cometImage{
+    width: 100%;
+}
+
+.details {
+    margin: 30px 0;
+}
+
+.detailItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.detailItem:last-child {
+    border-bottom: none;
+}
+
+.detailLabel {
+    font-weight: 600;
+    color: #8888cc;
+    font-size: 1rem;
+}
+
+.detailValue {
+    color: #ffffff;
+    font-size: 1.1rem;
+    text-align: right;
+}
+
+.actions {
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+.calculateButton {
+    background: linear-gradient(45deg, #2196f3, #21cbf3);
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.calculateButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(33, 150, 243, 0.4);
+}
+
+.backButton {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 12px 25px;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.backButton:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+    .name {
+        font-size: 2.5rem;
+    }
+
+    .designation {
+        font-size: 1.1rem;
+    }
+
+    .description {
+        font-size: 1rem;
+    }
+
+    .detailLabel,
+    .detailValue {
+        font-size: 0.9rem;
+    }
+
+    .actions {
+        gap: 10px;
+    }
+
+    .calculateButton,
+    .backButton {
+        padding: 12px 20px;
+        font-size: 1rem;
+    }
+}

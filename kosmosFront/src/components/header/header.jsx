@@ -1,45 +1,44 @@
-import React from 'react';
-import { NavLink, Link } from 'react-router-dom';
-
-function getUsernameFromJWT(token) {
-  if (!token) return null;
-  try {
-    const payload = token.split('.')[1];
-    const padded = payload.padEnd(payload.length + (4 - payload.length % 4) % 4, '=');
-    const decoded = JSON.parse(atob(padded));
-    return decoded.username || decoded.name || decoded.email;
-  } catch {
-    return null;
-  }
-}
+import React, { useEffect, useState } from "react";
+import { NavLink, Link } from "react-router-dom";
+import {jwtDecode} from "jwt-decode";
 
 export function Header() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    fetch("http://172.20.10.2:5075/api/user/me", {
+      method: "GET",
+      credentials: "include",
+    })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => data && setUser(data))
+      .catch(() => setUser(null));
+  }, []);
+
+
+  function handleLogout() {
+    fetch("http://172.20.10.2:5075/api/user/logout", {
+      method: "POST",
+      credentials: "include",
+    }).finally(() => {
+      window.location.href = "/login";
+    });
+  }
+
   const navItems = [
     { name: "Главная", to: "/" },
     { name: "Все исследования", to: "/all" },
     { name: "Мои исследования", to: "/mine" },
     { name: "Список комет", to: "/comets" },
   ];
-  
-  const token = localStorage.getItem('authToken');
-  const username = getUsernameFromJWT(token);
-
-  function handleLogout() {
-    localStorage.removeItem('authToken');
-    window.location.href = '/login';
-    
-  }
 
   return (
     <nav style={styles.navContainer}>
-      <div style={{ display: 'flex', gap: '2rem' }}>
+      <div style={{ display: "flex", gap: "2rem" }}>
         {navItems.map((item) => (
           <NavLink
             key={item.to}
             to={item.to}
-            className={({ isActive }) =>
-              isActive ? "nav-link active" : "nav-link"
-            }
             style={({ isActive }) => ({
               ...styles.link,
               ...(isActive ? styles.activeLink : {}),
@@ -50,10 +49,12 @@ export function Header() {
         ))}
       </div>
       <div style={styles.userSection}>
-        {username ? (
+        {user ? (
           <>
-            <span style={styles.username}>{username}</span>
-            <button onClick={handleLogout} style={styles.logoutButton}>Выйти</button>
+            <span style={styles.username}>{user.userName}</span>
+            <button onClick={handleLogout} style={styles.logoutButton}>
+              Выйти
+            </button>
           </>
         ) : (
           <Link to="/login" style={styles.loginLink}>Войти</Link>
@@ -62,6 +63,7 @@ export function Header() {
     </nav>
   );
 }
+
 
 const styles = {
   navContainer: {

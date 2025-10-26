@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './auth.css';
 
+const API_BASE_URL = 'http://172.20.10.2:5075/api';
+
 export function Register() {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
@@ -14,21 +16,27 @@ export function Register() {
     e.preventDefault();
     setError('');
     setIsLoading(true);
-    //todo
-    try {
-      const formData = new FormData();
-      formData.append('UserName', username);
-      formData.append('Email', email);
-      formData.append('Password', password);
 
-      const response = await fetch('{}/identity/User/Register', {
+    try {
+      const response = await fetch(`${API_BASE_URL}/user/register`, {
         method: 'POST',
-        body: formData,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          userName: username, 
+          email,
+          password,
+        })
       });
 
       if (!response.ok) {
-        const data = await response.json();
-        throw new Error(data.message || 'Ошибка регистрации');
+        let message = 'Ошибка регистрации';
+        try {
+          const data = await response.json();
+          message = data.error || data.message || message;
+        } catch {
+          message = await response.text() || message;
+        }
+        throw new Error(message);
       }
 
       navigate('/login');
@@ -43,43 +51,22 @@ export function Register() {
     <div className="auth-container">
       <form className="auth-form" onSubmit={handleSubmit}>
         <h2 className="auth-title">Регистрация</h2>
-
         {error && <div className="auth-error">{error}</div>}
-
         <div className="input-group">
           <label>Имя пользователя</label>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
+          <input type="text" value={username} onChange={e => setUsername(e.target.value)} required />
         </div>
-
         <div className="input-group">
           <label>Email</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+          <input type="email" value={email} onChange={e => setEmail(e.target.value)} required />
         </div>
-
         <div className="input-group">
           <label>Пароль</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+          <input type="password" value={password} onChange={e => setPassword(e.target.value)} required />
         </div>
-
         <button className="auth-button" type="submit" disabled={isLoading}>
           {isLoading ? 'Загрузка...' : 'Зарегистрироваться'}
         </button>
-
         <p className="auth-footer">
           Уже есть аккаунт? <Link to="/login">Войти</Link>
         </p>
@@ -87,4 +74,3 @@ export function Register() {
     </div>
   );
 }
-
