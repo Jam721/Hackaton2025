@@ -1,0 +1,58 @@
+.comet-card {
+  background: #222c49;
+  color: #eaeaec;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(67, 108, 183, 0.10);
+  padding: 1.4rem 1.2rem;
+  margin: 1rem 0;
+  display: flex;
+  align-items: flex-start;
+  transition: box-shadow 0.2s;
+  max-width: 410px;
+}
+
+.comet-card:hover {
+  box-shadow: 0 8px 40px rgba(99, 179, 237, 0.26);
+}
+
+.comet-card-img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-right: 1.3rem;
+  background: #191f34;
+  box-shadow: 0 2px 8px rgba(99, 179, 237, 0.12);
+}
+
+.comet-card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.comet-card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.35rem;
+  color: #63b3ed;
+}
+
+.comet-card-designation {
+  color: #aaa;
+  font-weight: normal;
+  font-size: 1rem;
+  margin-left: 6px;
+}
+
+.comet-card-discoverer,
+.comet-card-date {
+  font-size: 1rem;
+  margin: 0.14rem 0;
+}
+
+.comet-card-description {
+  margin-top: 0.3rem;
+  font-size: 0.97rem;
+  color: #b7caed;
+}
