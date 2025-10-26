@@ -7,13 +7,13 @@ import { Header } from "./components/header/header"
 
 import { Login } from "./pages/auth/login"
 import { Register } from "./pages/auth/register"
-import { AllComets } from "./pages/comet/comets"
 
 import { Home } from "./pages/Home/Home"
 import CometDetail from "./pages/CometDetail/CometDetail"
 import ObservationsPage from "./pages/ObservationsPage/ObservationsPage.jsx";
 import ObservationDetailPage from "./pages/ObservationDetailPage/ObservationDetailPage.jsx";
 import CalculationsPage from "./pages/CalculationsPage/CalculationsPage.jsx";
+import {AllComets} from "./pages/AllCometsPage/AllCometsPage.jsx";
 
 function isAuthenticated() {
   return Boolean(localStorage.getItem('authToken'));

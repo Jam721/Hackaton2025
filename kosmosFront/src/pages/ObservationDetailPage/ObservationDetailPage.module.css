@@ -12,6 +12,13 @@
     padding: 20px;
 }
 
+.headerActions {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
 .backButton {
     background: linear-gradient(135deg, #64b5f6, #42a5f5);
     color: white;
@@ -21,7 +28,6 @@
     cursor: pointer;
     font-weight: 600;
     transition: all 0.3s ease;
-    margin-bottom: 30px;
     box-shadow: 0 4px 15px rgba(100, 181, 246, 0.3);
     display: inline-flex;
     align-items: center;
@@ -31,6 +37,26 @@
 .backButton:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(100, 181, 246, 0.4);
+}
+
+.calculationsButton {
+    background: linear-gradient(135deg, #4caf50, #45a049);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.calculationsButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
 }
 
 .header {
@@ -119,6 +145,12 @@
     background: rgba(255, 255, 255, 0.05);
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.3s ease;
+}
+
+.infoItem:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-2px);
 }
 
 .infoItem label {
@@ -179,6 +211,7 @@
     padding: 12px;
     background: rgba(255, 255, 255, 0.05);
     border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .detailItem .label {
@@ -187,13 +220,18 @@
     font-size: 0.85rem;
 }
 
+.detailItem span {
+    color: white;
+    font-size: 1rem;
+}
+
 .sidebar {
     display: flex;
     flex-direction: column;
     gap: 25px;
 }
 
-.imageCard, .statsCard {
+.imageCard, .statsCard, .actionsCard {
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(20px);
     border-radius: 20px;
@@ -202,9 +240,32 @@
             0 8px 32px rgba(0, 0, 0, 0.3),
             inset 0 1px 0 rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
 }
 
-.imageCard h3, .statsCard h3 {
+.imageCard::before, .statsCard::before, .actionsCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+}
+
+.imageCard::before {
+    background: linear-gradient(90deg, #ff6b6b, #ff8e8e);
+}
+
+.statsCard::before {
+    background: linear-gradient(90deg, #4ecdc4, #88dacf);
+}
+
+.actionsCard::before {
+    background: linear-gradient(90deg, #45aaf2, #74b9ff);
+}
+
+.imageCard h3, .statsCard h3, .actionsCard h3 {
     margin-bottom: 20px;
     font-size: 1.3rem;
     font-weight: 300;
@@ -267,6 +328,46 @@
     font-size: 0.9rem;
 }
 
+.actionButtons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.actionButton {
+    background: linear-gradient(135deg, #4caf50, #45a049);
+    color: white;
+    border: none;
+    padding: 15px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.actionButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+}
+
+.actionButtonSecondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 15px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.actionButtonSecondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
 .loadingContainer, .errorContainer {
     display: flex;
     flex-direction: column;
@@ -293,7 +394,7 @@
 
 .errorContainer h2 {
     color: #ff6b6b;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .noCometData {
@@ -325,25 +426,18 @@
         flex-direction: column;
         align-items: center;
     }
-}
 
-.calculationsButton {
-    background: linear-gradient(135deg, #4caf50, #45a049);
-    color: white;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 12px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    margin-left: 15px;
-    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-}
+    .headerActions {
+        flex-direction: column;
+    }
 
-.calculationsButton:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+    .header h1 {
+        font-size: 2rem;
+    }
+
+    .cometHeader {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
 }

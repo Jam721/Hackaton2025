@@ -1,0 +1,188 @@
+.cometCard {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow:
+          0 8px 32px rgba(0, 0, 0, 0.3),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+}
+
+.cometCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #64b5f6, #90caf9, #bbdefb);
+}
+
+.cometCard:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow:
+          0 15px 45px rgba(0, 0, 0, 0.4),
+          0 0 0 1px rgba(100, 181, 246, 0.3);
+}
+
+.cometImageContainer {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.cometImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.cometCard:hover .cometImage {
+  transform: scale(1.1);
+}
+
+.imageOverlay {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 5px 10px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+}
+
+.cometId {
+  color: #bbdefb;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.cometCardBody {
+  padding: 25px;
+}
+
+.cometHeader {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cometName {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #e3f2fd;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.cometDesignation {
+  background: rgba(100, 181, 246, 0.2);
+  color: #bbdefb;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  align-self: flex-start;
+  border: 1px solid rgba(100, 181, 246, 0.3);
+}
+
+.cometDetails {
+  margin-bottom: 25px;
+}
+
+.detailItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.detailItem:last-child {
+  border-bottom: none;
+}
+
+.detailLabel {
+  font-size: 0.9rem;
+  color: #90caf9;
+  font-weight: 500;
+}
+
+.detailValue {
+  font-size: 0.9rem;
+  color: #e3f2fd;
+  font-weight: 600;
+}
+
+.description {
+  margin-top: 15px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  border-left: 3px solid #64b5f6;
+}
+
+.description p {
+  margin: 0;
+  color: #bbdefb;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.cometCardButton {
+  width: 100%;
+  background: linear-gradient(135deg, #64b5f6, #42a5f5);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(100, 181, 246, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.cometCardButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.cometCardButton:hover::before {
+  left: 100%;
+}
+
+.cometCardButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(100, 181, 246, 0.4);
+}
+
+@media (max-width: 768px) {
+  .cometCardBody {
+    padding: 20px;
+  }
+
+  .cometName {
+    font-size: 1.3rem;
+  }
+
+  .detailItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+}

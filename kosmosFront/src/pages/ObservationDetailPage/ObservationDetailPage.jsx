@@ -100,9 +100,17 @@ const ObservationDetailPage = () => {
     return (
         <div className={styles.detailPage}>
             <div className={styles.container}>
-                <button className={styles.backButton} onClick={() => navigate('/observations')}>
-                    ← Назад к списку исследований
-                </button>
+                <div className={styles.headerActions}>
+                    <button className={styles.backButton} onClick={() => navigate('/observations')}>
+                        ← Назад к списку исследований
+                    </button>
+                    <button
+                        className={styles.calculationsButton}
+                        onClick={() => navigate(`/calculations/${observation.cometId}`)}
+                    >
+                        🧮 Показать вычисления
+                    </button>
+                </div>
 
                 <div className={styles.header}>
                     <h1>🔭 Детали исследования #{observation.id}</h1>
@@ -191,14 +199,6 @@ const ObservationDetailPage = () => {
                         </div>
                     </div>
 
-                    // Добавим эту кнопку после backButton в ObservationDetailPage.jsx
-                    <button
-                        className={styles.calculationsButton}
-                        onClick={() => navigate(`/calculations/${observation.cometId}`)}
-                    >
-                        🧮 Показать вычисления
-                    </button>
-
                     <div className={styles.sidebar}>
                         <div className={styles.imageCard}>
                             <h3>🖼️ Изображение кометы</h3>
@@ -234,6 +234,24 @@ const ObservationDetailPage = () => {
                   </span>
                                     <span className={styles.statLabel}>Дата наблюдения</span>
                                 </div>
+                            </div>
+                        </div>
+
+                        <div className={styles.actionsCard}>
+                            <h3>⚡ Действия</h3>
+                            <div className={styles.actionButtons}>
+                                <button
+                                    className={styles.actionButton}
+                                    onClick={() => navigate(`/calculations/${observation.cometId}`)}
+                                >
+                                    🧮 Показать вычисления
+                                </button>
+                                <button
+                                    className={styles.actionButtonSecondary}
+                                    onClick={() => navigate('/observations')}
+                                >
+                                    📋 К списку исследований
+                                </button>
                             </div>
                         </div>
                     </div>

@@ -28,7 +28,6 @@ export function Header() {
   const navItems = [
     { name: "Главная", to: "/" },
     { name: "Все исследования", to: "/observations" },
-    { name: "Мои исследования", to: "/mine" },
     { name: "Список комет", to: "/comets" },
   ];
 

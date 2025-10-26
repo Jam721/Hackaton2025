@@ -1,5 +1,7 @@
 import type {Comet} from '../../types/comet';
 import styles from './CometInfo.module.css';
+import React from "react";
+import {Link} from "react-router-dom";
 
 interface CometInfoProps {
     comet: Comet;
@@ -82,11 +84,14 @@ const CometInfo: React.FC<CometInfoProps> = ({ comet }) => {
             </div>
 
             <div className={styles.actions}>
-                <button className={styles.calculateButton}>
-                    Рассчитать расстояние от Земли
+                <button className={styles.calculateButton} >
+                    <Link to="/observations">
+                        Рассчитать расстояние от Земли
+                    </Link>
                 </button>
                 <button className={styles.backButton} onClick={() => window.history.back()}>
-                    Назад к солнечной системе
+
+                        Назад к солнечной системе
                 </button>
             </div>
         </div>

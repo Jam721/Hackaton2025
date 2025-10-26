@@ -16,3 +16,6 @@ export interface Comet {
 export interface CometDetailProps {
     comet: Comet;
 }
+
+export default class type {
+}
