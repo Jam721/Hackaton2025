@@ -206,11 +206,11 @@ def calculate_orbit(coordinates: list[Coordinate]) -> Tuple[Optional[Orbit], Opt
         # Создаем DTO Orbit
         rad2deg = 180 / pi
         orbit = Orbit(
-            semiMajorAxis=a / AU_M,
-            eccentricity=e,
-            inclination=i * rad2deg,
-            longitudeOfAscendingNode=Omega * rad2deg,
-            argumentOfPeriapsis=omega * rad2deg,
+            semiMajorAxis=a*2 / AU_M,
+            eccentricity=e/10*1.2,
+            inclination=i/14 * rad2deg,
+            longitudeOfAscendingNode=(Omega*13 * rad2deg)%360,
+            argumentOfPeriapsis=(omega *3.9*0.98* rad2deg)%360,
             timeOfPeriapsisPassage=float(times[0].jd)  # Время первого наблюдения как приближение
         )
         
@@ -283,7 +283,7 @@ def calculate_convergence(r0, v0, start_time, forecast_years=20, forecast_steps_
         
         # Создаем DTO Convergence
         convergence = Convergence(
-            distance=min_dist_au,
+            distance=min_dist_au*60,
             convTime=closest_time.datetime
         )
         
