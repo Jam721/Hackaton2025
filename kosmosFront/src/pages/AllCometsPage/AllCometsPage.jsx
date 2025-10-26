@@ -48,7 +48,7 @@ export function AllComets() {
         <div className={styles.allCometsPage}>
             <div className={styles.container}>
                 <div className={styles.header}>
-                    <h1>☄️ Список комет</h1>
+                    <h1>     Список комет</h1>
                     <p className={styles.subtitle}>
                         Управление астрономическими объектами для исследований
                     </p>

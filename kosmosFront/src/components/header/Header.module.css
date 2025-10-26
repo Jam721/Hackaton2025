@@ -1,0 +1,407 @@
+.header {
+    background: rgba(10, 15, 35, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+}
+
+/* Бренд и логотип */
+.brand {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #64b5f6;
+    text-decoration: none;
+    background: linear-gradient(90deg, #64b5f6, #90caf9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.subtitle {
+    font-size: 0.75rem;
+    color: #bbdefb;
+    opacity: 0.8;
+    letter-spacing: 0.5px;
+}
+
+/* Десктопная навигация */
+.nav {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .nav {
+        display: none;
+    }
+}
+
+.navLink {
+    padding: 12px 20px;
+    color: #bbdefb;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.navLink::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s;
+}
+
+.navLink:hover::before {
+    left: 100%;
+}
+
+.navLink:hover {
+    color: #64b5f6;
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-2px);
+}
+
+.navLinkActive {
+    color: #64b5f6;
+    background: rgba(100, 181, 246, 0.1);
+    box-shadow: 0 4px 15px rgba(100, 181, 246, 0.2);
+}
+
+.navLinkActive::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 2px;
+    background: linear-gradient(90deg, #64b5f6, #90caf9);
+    border-radius: 1px;
+}
+
+/* Пользовательская секция */
+.userSection {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+@media (max-width: 768px) {
+    .userSection {
+        display: none;
+    }
+}
+
+.userInfo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px 16px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.userAvatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #64b5f6, #42a5f5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 15px rgba(100, 181, 246, 0.3);
+}
+
+.username {
+    color: #e3f2fd;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.logoutButton {
+    background: rgba(255, 107, 107, 0.1);
+    border: 1px solid rgba(255, 107, 107, 0.3);
+    color: #ff6b6b;
+    padding: 8px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logoutButton:hover {
+    background: rgba(255, 107, 107, 0.2);
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.2);
+}
+
+.loginButton {
+    background: linear-gradient(135deg, #64b5f6, #42a5f5);
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(100, 181, 246, 0.3);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.loginButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(100, 181, 246, 0.4);
+}
+
+/* Мобильное меню */
+.menuToggle {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+}
+
+.menuToggle:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.menuToggle span {
+    width: 25px;
+    height: 3px;
+    background: #bbdefb;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.menuToggle:hover span {
+    background: #64b5f6;
+}
+
+@media (max-width: 768px) {
+    .menuToggle {
+        display: flex;
+    }
+}
+
+.mobileNav {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: rgba(10, 15, 35, 0.98);
+    backdrop-filter: blur(30px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 999;
+}
+
+.mobileNavOpen {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobileNavContent {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.mobileNavLink {
+    padding: 15px 20px;
+    color: #bbdefb;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.mobileNavLink:hover {
+    color: #64b5f6;
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.mobileNavLinkActive {
+    color: #64b5f6;
+    background: rgba(100, 181, 246, 0.1);
+    border-color: rgba(100, 181, 246, 0.2);
+}
+
+.mobileUserSection {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.mobileUserInfo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+}
+
+.mobileUserAvatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #64b5f6, #42a5f5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.mobileUsername {
+    color: #e3f2fd;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.mobileLogoutButton {
+    background: rgba(255, 107, 107, 0.1);
+    border: 1px solid rgba(255, 107, 107, 0.3);
+    color: #ff6b6b;
+    padding: 15px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.mobileLogoutButton:hover {
+    background: rgba(255, 107, 107, 0.2);
+    transform: translateY(-2px);
+}
+
+.mobileLoginButton {
+    background: linear-gradient(135deg, #64b5f6, #42a5f5);
+    color: white;
+    text-decoration: none;
+    padding: 15px 20px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(100, 181, 246, 0.3);
+}
+
+.mobileLoginButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(100, 181, 246, 0.4);
+}
+
+.overlay {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 998;
+}
+
+/* Анимации */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.header {
+    animation: slideDown 0.5s ease;
+}
+
+/* Адаптивность */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+        height: 60px;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+    }
+
+    .subtitle {
+        font-size: 0.7rem;
+    }
+
+    .mobileNav {
+        top: 60px;
+    }
+
+    .overlay {
+        top: 60px;
+    }
+}

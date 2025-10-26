@@ -108,7 +108,7 @@ const ObservationDetailPage = () => {
                         className={styles.calculationsButton}
                         onClick={() => navigate(`/calculations/${observation.cometId}`)}
                     >
-                        🧮 Показать вычисления
+                           Показать вычисления
                     </button>
                 </div>
 
@@ -118,7 +118,7 @@ const ObservationDetailPage = () => {
                         <span className={styles.badge}>ID: {observation.id}</span>
                         <span className={styles.badge}>Комета: {comet?.name}</span>
                         <span className={styles.badge}>
-              📅 {new Date(observation.observationTime).toLocaleDateString('ru-RU')}
+                   {new Date(observation.observationTime).toLocaleDateString('ru-RU')}
             </span>
                     </div>
                 </div>
@@ -129,30 +129,30 @@ const ObservationDetailPage = () => {
                             <h2>📊 Данные наблюдения</h2>
                             <div className={styles.infoGrid}>
                                 <div className={styles.infoItem}>
-                                    <label>🆔 ID исследования:</label>
+                                    <label>   ID исследования:</label>
                                     <span>{observation.id}</span>
                                 </div>
                                 <div className={styles.infoItem}>
-                                    <label>🕒 Время наблюдения:</label>
+                                    <label>   Время наблюдения:</label>
                                     <span>{new Date(observation.observationTime).toLocaleString('ru-RU')}</span>
                                 </div>
                                 <div className={styles.infoItem}>
-                                    <label>🎯 Прямое восхождение (RA):</label>
+                                    <label>    Прямое восхождение (RA):</label>
                                     <span>{observation.rightAscension}°</span>
                                 </div>
                                 <div className={styles.infoItem}>
-                                    <label>📍 Склонение (Dec):</label>
+                                    <label>   Склонение (Dec):</label>
                                     <span>{observation.declination}°</span>
                                 </div>
                                 <div className={styles.infoItem}>
-                                    <label>☄️ ID кометы:</label>
+                                    <label>     ID кометы:</label>
                                     <span>{observation.cometId}</span>
                                 </div>
                             </div>
                         </div>
 
                         <div className={styles.card}>
-                            <h2>☄️ Информация о комете</h2>
+                            <h2>     Информация о комете</h2>
                             {comet ? (
                                 <div className={styles.cometInfo}>
                                     <div className={styles.cometHeader}>
@@ -169,24 +169,24 @@ const ObservationDetailPage = () => {
                                     <div className={styles.cometDetails}>
                                         {comet.discoverer && (
                                             <div className={styles.detailItem}>
-                                                <span className={styles.label}>👨‍🔬 Первооткрыватель:</span>
+                                                <span className={styles.label}>     Первооткрыватель:</span>
                                                 <span>{comet.discoverer}</span>
                                             </div>
                                         )}
                                         {comet.discoveryDate && (
                                             <div className={styles.detailItem}>
-                                                <span className={styles.label}>📅 Дата открытия:</span>
+                                                <span className={styles.label}>     Дата открытия:</span>
                                                 <span>{new Date(comet.discoveryDate).toLocaleDateString('ru-RU')}</span>
                                             </div>
                                         )}
                                         {comet.createdAt && (
                                             <div className={styles.detailItem}>
-                                                <span className={styles.label}>📝 Дата создания записи:</span>
+                                                <span className={styles.label}>   Дата создания записи:</span>
                                                 <span>{new Date(comet.createdAt).toLocaleDateString('ru-RU')}</span>
                                             </div>
                                         )}
                                         <div className={styles.detailItem}>
-                                            <span className={styles.label}>🆔 ID кометы:</span>
+                                            <span className={styles.label}>   ID кометы:</span>
                                             <span>{comet.id}</span>
                                         </div>
                                     </div>
@@ -201,7 +201,7 @@ const ObservationDetailPage = () => {
 
                     <div className={styles.sidebar}>
                         <div className={styles.imageCard}>
-                            <h3>🖼️ Изображение кометы</h3>
+                            <h3>   Изображение кометы</h3>
                             <div className={styles.imageContainer}>
                                 <img
                                     src={getCometImageUrl(comet)}
@@ -238,19 +238,19 @@ const ObservationDetailPage = () => {
                         </div>
 
                         <div className={styles.actionsCard}>
-                            <h3>⚡ Действия</h3>
+                            <h3>   Действия</h3>
                             <div className={styles.actionButtons}>
                                 <button
                                     className={styles.actionButton}
                                     onClick={() => navigate(`/calculations/${observation.cometId}`)}
                                 >
-                                    🧮 Показать вычисления
+                                       Показать вычисления
                                 </button>
                                 <button
                                     className={styles.actionButtonSecondary}
                                     onClick={() => navigate('/observations')}
                                 >
-                                    📋 К списку исследований
+                                     К списку исследований
                                 </button>
                             </div>
                         </div>

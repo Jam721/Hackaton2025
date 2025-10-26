@@ -56,12 +56,12 @@ export function CometCard({ comet }: { comet: Comet }) {
 
           <div className={styles.cometDetails}>
             <div className={styles.detailItem}>
-              <span className={styles.detailLabel}>👨‍🔬 Открыватель:</span>
+              <span className={styles.detailLabel}>     Открыватель:</span>
               <span className={styles.detailValue}>{comet.discoverer || "—"}</span>
             </div>
 
             <div className={styles.detailItem}>
-              <span className={styles.detailLabel}>📅 Дата открытия:</span>
+              <span className={styles.detailLabel}>     Дата открытия:</span>
               <span className={styles.detailValue}>{formatDate(comet.discoveryDate)}</span>
             </div>
 
@@ -79,7 +79,7 @@ export function CometCard({ comet }: { comet: Comet }) {
               className={styles.cometCardButton}
               onClick={handleMoreInfo}
           >
-            🔍 Подробнее
+              Подробнее
           </button>
         </div>
       </div>

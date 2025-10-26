@@ -37,7 +37,7 @@ const AddObservationForm = ({ onSubmit }) => {
 
     return (
         <div className={styles.formContainer}>
-            <h3>➕ Добавить новое исследование</h3>
+            <h3> Добавить новое исследование</h3>
             <form onSubmit={handleSubmit} className={styles.form}>
                 <div className={styles.formGroup}>
                     <label>Время наблюдения:</label>
@@ -97,7 +97,7 @@ const AddObservationForm = ({ onSubmit }) => {
                     className={styles.submitButton}
                     disabled={submitting}
                 >
-                    {submitting ? '⏳ Добавление...' : '🚀 Добавить исследование'}
+                    {submitting ? ' Добавление...' : ' Добавить исследование'}
                 </button>
             </form>
         </div>

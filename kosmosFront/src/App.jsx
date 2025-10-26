@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link, Navigate } from "react-ro
 import { CookiesProvider } from 'react-cookie';
 
 import { Main } from "./pages/main/main"
-import { Header } from "./components/header/header"
+import { Header } from "./components/header/Header.jsx"
 
 import { Login } from "./pages/auth/login"
 import { Register } from "./pages/auth/register"

@@ -89,21 +89,11 @@ const SolarSystem: React.FC<SolarSystemProps> = ({
                             className={styles.detailsButton}
                             onClick={() => handleCometDetails(selectedBody.id)}
                         >
-                            View Comet Details
+                            Подробнее
                         </button>
                     )}
                 </div>
             )}
-
-            {/* Легенда и инструкции */}
-            <div className={styles.instructions}>
-                <h4>Solar System Controls</h4>
-                <p>• Click on objects to select them</p>
-                <p>• Drag to rotate view</p>
-                <p>• Scroll to zoom</p>
-                <p>• Click comets for detailed view</p>
-                <p>• Comets count: {bodies.filter(b => b.type === 'comet').length}</p>
-            </div>
         </div>
     );
 };

@@ -1,153 +1,331 @@
+/* CometInfo.module.css */
+
 .container {
-    max-width: 100%;
-    padding: 0;
-    background: transparent;
-    backdrop-filter: none;
-    border: none;
-    box-shadow: none;
-    margin: 0;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    border-radius: 20px;
+    padding: 40px;
+    backdrop-filter: blur(10px);
+    box-shadow:
+            0 20px 40px rgba(0, 0, 0, 0.3),
+            0 0 80px rgba(99, 102, 241, 0.1);
+    width: 100%;
+    max-width: 600px;
+    animation: fadeIn 0.6s ease-out 0.3s both;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .header {
-    text-align: left;
-    margin-bottom: 30px;
-    border-bottom: none;
-    padding-bottom: 0;
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(99, 102, 241, 0.3);
 }
 
 .name {
-    font-size: 3.5rem;
-    margin: 0 0 10px 0;
-    background: linear-gradient(45deg, #64ffda, #4fc3f7);
+    background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-weight: 700;
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+    text-shadow: 0 0 30px rgba(99, 102, 241, 0.3);
 }
 
 .designation {
-    font-size: 1.4rem;
-    color: #8888cc;
+    color: #94a3b8;
+    font-size: 1.2rem;
+    font-weight: 600;
     margin: 0;
-    font-style: italic;
+}
+
+.cometImage {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 16px;
+    margin-bottom: 30px;
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.cometImage:hover {
+    border-color: #6366f1;
+    box-shadow:
+            0 15px 40px rgba(0, 0, 0, 0.4),
+            0 0 30px rgba(99, 102, 241, 0.2);
+    transform: translateY(-2px);
 }
 
 .section {
-    margin-bottom: 25px;
+    margin-bottom: 30px;
 }
 
 .sectionTitle {
+    background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     font-size: 1.5rem;
-    color: #4fc3f7;
-    margin: 0 0 15px 0;
-    font-weight: 600;
+    font-weight: 700;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sectionTitle::before {
+    content: '✦';
+    font-size: 1.2em;
 }
 
 .description {
-    font-size: 1.2rem;
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    border-radius: 12px;
+    padding: 20px;
+    color: #cbd5e1;
+    font-size: 15px;
     line-height: 1.6;
-    color: #cccccc;
     margin: 0;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
 }
 
-.cometImage{
-    width: 100%;
+.description:hover {
+    border-color: #6366f1;
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.1);
 }
 
 .details {
-    margin: 30px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 40px;
 }
 
 .detailItem {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 16px;
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
 }
 
-.detailItem:last-child {
-    border-bottom: none;
+.detailItem:hover {
+    border-color: #6366f1;
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(99, 102, 241, 0.1);
 }
 
 .detailLabel {
+    color: #e2e8f0;
+    font-size: 14px;
     font-weight: 600;
-    color: #8888cc;
-    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.detailLabel::before {
+    content: '🞄';
+    color: #6366f1;
+    font-size: 12px;
 }
 
 .detailValue {
-    color: #ffffff;
-    font-size: 1.1rem;
+    color: #f1f5f9;
+    font-size: 16px;
+    font-weight: 600;
     text-align: right;
 }
 
 .actions {
     display: flex;
-    gap: 15px;
-    flex-direction: column;
-    margin-top: 30px;
+    gap: 16px;
+    flex-wrap: wrap;
 }
 
-.calculateButton {
-    background: linear-gradient(45deg, #2196f3, #21cbf3);
-    color: white;
+.calculateButton,
+.backButton {
+    flex: 1;
+    min-width: 200px;
+    padding: 16px 24px;
     border: none;
-    padding: 15px 25px;
-    border-radius: 10px;
-    font-size: 1.1rem;
+    border-radius: 12px;
+    font-size: 15px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-}
-
-.calculateButton:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(33, 150, 243, 0.4);
-}
-
-.backButton {
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 12px 25px;
-    border-radius: 10px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    position: relative;
+    overflow: hidden;
     backdrop-filter: blur(10px);
 }
 
-.backButton:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-1px);
+.calculateButton {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    border: 1px solid rgba(16, 185, 129, 0.3);
 }
 
+.calculateButton a {
+    color: white;
+    text-decoration: none;
+    width: 100%;
+    text-align: center;
+}
+
+.backButton {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    color: white;
+    border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+.calculateButton::before,
+.backButton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.calculateButton:hover::before,
+.backButton:hover::before {
+    left: 100%;
+}
+
+.calculateButton:hover,
+.backButton:hover {
+    transform: translateY(-2px);
+    box-shadow:
+            0 10px 25px rgba(99, 102, 241, 0.3),
+            0 0 30px rgba(99, 102, 241, 0.1);
+}
+
+.calculateButton:hover {
+    box-shadow:
+            0 10px 25px rgba(16, 185, 129, 0.3),
+            0 0 30px rgba(16, 185, 129, 0.1);
+}
+
+/* Адаптивность */
 @media (max-width: 768px) {
+    .container {
+        padding: 30px 20px;
+        margin: 20px;
+    }
+
     .name {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
 
     .designation {
-        font-size: 1.1rem;
-    }
-
-    .description {
         font-size: 1rem;
     }
 
-    .detailLabel,
+    .cometImage {
+        height: 200px;
+    }
+
+    .detailItem {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
     .detailValue {
-        font-size: 0.9rem;
+        text-align: left;
+        width: 100%;
+        padding-left: 20px;
     }
 
     .actions {
-        gap: 10px;
+        flex-direction: column;
     }
 
     .calculateButton,
     .backButton {
-        padding: 12px 20px;
-        font-size: 1rem;
+        min-width: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 20px 15px;
+        margin: 10px;
+    }
+
+    .name {
+        font-size: 1.8rem;
+    }
+
+    .sectionTitle {
+        font-size: 1.3rem;
+    }
+
+    .detailLabel,
+    .detailValue {
+        font-size: 14px;
+    }
+}
+
+/* Специальные стили для иконок */
+.calculateButton::after {
+    font-size: 1.1em;
+}
+
+.backButton::after {
+    content: '←';
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+/* Анимация появления элементов */
+.detailItem {
+    animation: slideInRight 0.5s ease-out both;
+}
+
+.detailItem:nth-child(1) { animation-delay: 0.1s; }
+.detailItem:nth-child(2) { animation-delay: 0.2s; }
+.detailItem:nth-child(3) { animation-delay: 0.3s; }
+.detailItem:nth-child(4) { animation-delay: 0.4s; }
+.detailItem:nth-child(5) { animation-delay: 0.5s; }
+.detailItem:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
     }
 }

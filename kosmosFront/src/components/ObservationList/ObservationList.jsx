@@ -15,7 +15,7 @@ const ObservationList = ({ observations, onDelete, onSelect }) => {
 
     return (
         <div className={styles.observationList}>
-            <h2>📋 Список исследований ({observations.length})</h2>
+            <h2>  Список исследований ({observations.length})</h2>
             {observations.map(observation => (
                 <div key={observation.id} className={styles.observationItem}>
                     <div
@@ -26,13 +26,13 @@ const ObservationList = ({ observations, onDelete, onSelect }) => {
               #{observation.id}
             </span>
                         <span className={styles.observationTime}>
-              📅 {new Date(observation.observationTime).toLocaleDateString('ru-RU')}
+                 {new Date(observation.observationTime).toLocaleDateString('ru-RU')}
             </span>
                         <span className={styles.coordinates}>
-              🎯 RA: {observation.rightAscension}° • Dec: {observation.declination}°
+                  RA: {observation.rightAscension}° • Dec: {observation.declination}°
             </span>
                         <span className={styles.cometId}>
-              ☄️ Комета ID: {observation.cometId}
+                   Комета ID: {observation.cometId}
             </span>
                     </div>
                     <button
@@ -43,7 +43,7 @@ const ObservationList = ({ observations, onDelete, onSelect }) => {
                         }}
                         title="Удалить исследование"
                     >
-                        🗑️ Удалить
+                             Удалить
                     </button>
                 </div>
             ))}

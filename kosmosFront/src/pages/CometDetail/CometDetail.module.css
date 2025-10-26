@@ -1,76 +1,130 @@
+/* CometDetail.module.css */
+
 .container {
-    width: 100%;
-    height: 100vh;
-    background: linear-gradient(135deg, #0a0a2a 0%, #1a1a4a 50%, #2d2d5a 100%);
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     position: relative;
     overflow: hidden;
-    display: flex;
 }
 
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+            radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 40% 80%, rgba(6, 182, 212, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* Левая часть - 3D сцена */
 .cometSection {
-    flex: 1;
-    height: 100%;
     position: relative;
-    z-index: 1;
+    background: rgba(15, 23, 42, 0.3);
+    border-right: 1px solid rgba(99, 102, 241, 0.2);
+    backdrop-filter: blur(10px);
+    overflow: hidden;
 }
 
+.cometSection canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* Правая часть - информация */
 .infoSection {
-    flex: 1;
-    height: 100%;
+    padding: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 40px;
     position: relative;
-    z-index: 2;
+    overflow-y: auto;
+    max-height: 100vh;
 }
 
+/* Состояния загрузки и ошибки */
 .loadingContainer,
 .errorContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    height: 100vh;
-    background: linear-gradient(135deg, #0a0a2a 0%, #1a1a4a 50%, #2d2d5a 100%);
-    color: white;
+    justify-content: center;
+    background: rgba(15, 23, 42, 0.9);
+    backdrop-filter: blur(20px);
+    z-index: 1000;
 }
 
 .loadingText,
 .errorText {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    background: linear-gradient(45deg, #64ffda, #4fc3f7);
+    background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-align: center;
+    text-shadow: 0 0 30px rgba(99, 102, 241, 0.3);
 }
 
 .backButton {
-    background: rgba(255, 255, 255, 0.1);
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
     color: white;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 12px 25px;
-    border-radius: 10px;
-    font-size: 1rem;
+    border: none;
+    border-radius: 12px;
+    padding: 16px 32px;
+    font-size: 16px;
+    font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.backButton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.backButton:hover::before {
+    left: 100%;
 }
 
 .backButton:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-1px);
+    transform: translateY(-2px);
+    box-shadow:
+            0 10px 25px rgba(99, 102, 241, 0.3),
+            0 0 30px rgba(99, 102, 241, 0.1);
 }
 
+/* Анимированные звезды на заднем плане */
 .backgroundElements {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    right: 0;
+    bottom: 0;
     pointer-events: none;
-    z-index: 0;
+    z-index: 1;
 }
 
 .star {
@@ -79,6 +133,130 @@
     height: 3px;
     background: white;
     border-radius: 50%;
-    animation: twinkle 4s infinite;
+    animation: twinkle 4s infinite ease-in-out;
     box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.5);
+}
+
+.star::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.6;
+}
+
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(0.8);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Анимации для разделов */
+.cometSection {
+    animation: slideInLeft 0.8s ease-out;
+}
+
+.infoSection {
+    animation: slideInRight 0.8s ease-out;
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 50vh 1fr;
+    }
+
+    .cometSection {
+        border-right: none;
+        border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+    }
+
+    .infoSection {
+        padding: 30px 20px;
+        max-height: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        grid-template-rows: 40vh 1fr;
+    }
+
+    .infoSection {
+        padding: 20px 15px;
+    }
+
+    .loadingText,
+    .errorText {
+        font-size: 1.5rem;
+    }
+
+    .backButton {
+        padding: 14px 28px;
+        font-size: 14px;
+    }
+}
+
+/* Стили для скроллбара в infoSection */
+.infoSection::-webkit-scrollbar {
+    width: 6px;
+}
+
+.infoSection::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.4);
+    border-radius: 3px;
+}
+
+.infoSection::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    border-radius: 3px;
+}
+
+.infoSection::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
 }

@@ -135,7 +135,7 @@ const CalculationsPage = () => {
                 </button>
 
                 <div className={styles.header}>
-                    <h1>🧮 Вычисления для кометы</h1>
+                    <h1>   Вычисления для кометы</h1>
                     {comet && (
                         <div className={styles.cometHeader}>
                             <h2>{comet.name}</h2>
@@ -160,7 +160,7 @@ const CalculationsPage = () => {
                     {/* Convergation Calculation */}
                     <div className={styles.calculationCard}>
                         <div className={styles.cardHeader}>
-                            <h3>🔄 Вычисление сходимости</h3>
+                            <h3>   Вычисление сходимости</h3>
                             <span className={styles.cardBadge}>Текущее</span>
                         </div>
                         {calculations.convergation ? (
@@ -267,7 +267,7 @@ const CalculationsPage = () => {
                     {/* Two Parameters History */}
                     <div className={styles.calculationCard}>
                         <div className={styles.cardHeader}>
-                            <h3>🎯 История 2 параметров</h3>
+                            <h3>    История 2 параметров</h3>
                             <span className={styles.cardBadge}>{calculations.twoParameters.length} записей</span>
                         </div>
                         <div className={styles.parametersList}>
@@ -298,7 +298,7 @@ const CalculationsPage = () => {
 
                 <div className={styles.actions}>
                     <button onClick={fetchAllData} className={styles.refreshButton}>
-                        🔄 Обновить вычисления
+                           Обновить вычисления
                     </button>
                 </div>
             </div>

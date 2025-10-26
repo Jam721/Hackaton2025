@@ -41,8 +41,8 @@ const CometDetail: React.FC = () => {
             {/* Левая часть - 3D сцена с кометой */}
             <div className={styles.cometSection}>
                 <Canvas camera={{ position: [0, 0, 8], fov: 50 }}>
-                    <ambientLight intensity={0.4} />
-                    <pointLight position={[5, 5, 5]} intensity={1.2} color="#4fc3f7" />
+                    <ambientLight intensity={3} />
+                    <pointLight position={[5, 5, 5]} intensity={10} color="#4fc3f7" />
                     <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={0.8} />
 
                     {/* Звездный фон */}

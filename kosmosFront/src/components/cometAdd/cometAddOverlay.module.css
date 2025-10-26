@@ -1,3 +1,5 @@
+/* cometAddOverlay.module.css */
+
 .overlayBg {
   position: fixed;
   top: 0;
@@ -7,55 +9,39 @@
   background: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(10px);
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   z-index: 1000;
-  padding: 20px;
-  animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  animation: fadeIn 0.3s ease-out;
 }
 
 .overlayForm {
-  background: linear-gradient(135deg, #1a1a4a 0%, #2d2d6e 100%);
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  border: 1px solid rgba(99, 102, 241, 0.3);
   border-radius: 20px;
   padding: 30px;
-  width: 100%;
+  width: 90%;
   max-width: 500px;
   max-height: 90vh;
   overflow-y: auto;
-  box-shadow:
-          0 20px 60px rgba(0, 0, 0, 0.5),
-          inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.1);
   position: relative;
-  animation: slideUp 0.3s ease;
-}
-
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  box-shadow:
+          0 20px 40px rgba(0, 0, 0, 0.5),
+          0 0 80px rgba(99, 102, 241, 0.1),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .overlayCloseBtn {
   position: absolute;
-  top: 20px;
+  top: 15px;
   right: 20px;
   background: rgba(255, 255, 255, 0.1);
-  border: none;
-  color: white;
-  font-size: 1.5rem;
-  width: 40px;
-  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #94a3b8;
+  font-size: 24px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   cursor: pointer;
   display: flex;
@@ -66,30 +52,34 @@
 }
 
 .overlayCloseBtn:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(239, 68, 68, 0.2);
+  color: #fecaca;
+  border-color: rgba(239, 68, 68, 0.4);
   transform: rotate(90deg);
 }
 
 .overlayHeader {
   text-align: center;
   margin-bottom: 30px;
-  padding-right: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(99, 102, 241, 0.3);
 }
 
 .overlayHeader h2 {
-  font-size: 2rem;
-  font-weight: 300;
-  color: #e3f2fd;
-  margin-bottom: 8px;
-  background: linear-gradient(90deg, #64b5f6, #90caf9);
+  background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  text-shadow: 0 0 30px rgba(99, 102, 241, 0.3);
 }
 
 .overlayHeader p {
-  color: #bbdefb;
-  font-size: 1rem;
-  opacity: 0.8;
+  color: #94a3b8;
+  font-size: 14px;
+  margin: 0;
 }
 
 .form {
@@ -105,140 +95,232 @@
 }
 
 .formGroup label {
+  color: #e2e8f0;
+  font-size: 14px;
   font-weight: 600;
-  color: #90caf9;
-  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .formGroup input,
 .formGroup textarea {
-  padding: 12px 15px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.08);
-  color: white;
-  font-size: 14px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 12px;
+  padding: 14px 16px;
+  color: #f1f5f9;
+  font-size: 15px;
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
+}
+
+.formGroup input::placeholder,
+.formGroup textarea::placeholder {
+  color: #64748b;
 }
 
 .formGroup input:focus,
 .formGroup textarea:focus {
   outline: none;
-  border-color: #64b5f6;
-  background: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 0 0 3px rgba(100, 181, 246, 0.2);
-}
-
-.formGroup input::placeholder,
-.formGroup textarea::placeholder {
-  color: rgba(255, 255, 255, 0.4);
+  border-color: #6366f1;
+  box-shadow:
+          0 0 0 3px rgba(99, 102, 241, 0.1),
+          0 0 20px rgba(99, 102, 241, 0.2);
+  transform: translateY(-1px);
 }
 
 .formGroup input:disabled,
 .formGroup textarea:disabled {
-  opacity: 0.6;
+  opacity: 0.5;
   cursor: not-allowed;
 }
 
-.fileInputContainer {
-  position: relative;
-  cursor: pointer;
+.formGroup textarea {
+  resize: vertical;
+  min-height: 80px;
+  font-family: inherit;
 }
 
-.fileInput {
+/* Стили для загрузки файла */
+.fileUploadContainer {
+  margin-top: 8px;
+}
+
+.fileUploadLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.fileUploadInput {
+  display: none;
+}
+
+.fileUploadButton {
+  padding: 14px 20px;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+.fileUploadButton::before {
+  content: '';
   position: absolute;
-  opacity: 0;
+  top: 0;
+  left: -100%;
   width: 100%;
   height: 100%;
-  cursor: pointer;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
 }
 
-.fileInputText {
-  display: block;
-  padding: 12px 15px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.7);
+.fileUploadButton:hover::before {
+  left: 100%;
+}
+
+.fileUploadButton:hover {
+  transform: translateY(-2px);
+  box-shadow:
+          0 10px 25px rgba(99, 102, 241, 0.3),
+          0 0 30px rgba(99, 102, 241, 0.1);
+}
+
+.fileUploadText {
+  color: #94a3b8;
   font-size: 14px;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-}
-
-.fileInputContainer:hover .fileInputText {
-  border-color: #64b5f6;
-  color: white;
-}
-
-.overlayError {
-  background: rgba(255, 107, 107, 0.1);
-  border: 1px solid rgba(255, 107, 107, 0.3);
-  border-radius: 10px;
-  padding: 12px 15px;
-  color: #ff6b6b;
-  font-size: 0.9rem;
   text-align: center;
+  padding: 10px;
+  background: rgba(15, 23, 42, 0.4);
+  border-radius: 8px;
+  border: 1px dashed rgba(99, 102, 241, 0.3);
+  transition: all 0.3s ease;
 }
 
+.fileUploadLabel:hover .fileUploadText {
+  border-color: #6366f1;
+  color: #e2e8f0;
+}
+
+.fileUploadLabel:has(.fileUploadInput:disabled) {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.fileUploadLabel:has(.fileUploadInput:disabled) .fileUploadButton {
+  background: linear-gradient(135deg, #475569 0%, #64748b 100%);
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Стили для ошибок */
+.overlayError {
+  background: rgba(220, 38, 38, 0.1);
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  border-radius: 12px;
+  padding: 16px;
+  color: #fecaca;
+  font-size: 14px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  animation: shake 0.5s ease-in-out;
+}
+
+/* Кнопки действий */
 .formActions {
   display: flex;
   gap: 15px;
   margin-top: 10px;
 }
 
-.cancelButton {
+.cancelButton,
+.submitButton {
   flex: 1;
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 12px 20px;
-  border-radius: 10px;
-  cursor: pointer;
+  padding: 16px 24px;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
   font-weight: 600;
+  cursor: pointer;
   transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.cancelButton {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
 }
 
 .cancelButton:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.1);
+  color: #e2e8f0;
+  border-color: rgba(255, 255, 255, 0.2);
   transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .submitButton {
-  flex: 2;
-  background: linear-gradient(135deg, #64b5f6, #42a5f5);
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   color: white;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  box-shadow: 0 4px 15px rgba(100, 181, 246, 0.3);
+  border: 1px solid rgba(16, 185, 129, 0.3);
 }
 
 .submitButton:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(100, 181, 246, 0.4);
+  box-shadow:
+          0 10px 25px rgba(16, 185, 129, 0.3),
+          0 0 30px rgba(16, 185, 129, 0.1);
 }
 
+.cancelButton:disabled,
 .submitButton:disabled {
-  opacity: 0.6;
+  opacity: 0.5;
   cursor: not-allowed;
-  transform: none;
+  transform: none !important;
 }
 
+/* Индикатор загрузки */
 .loadingSpinner {
+  display: inline-block;
   width: 16px;
   height: 16px;
   border: 2px solid transparent;
-  border-top: 2px solid white;
+  border-top: 2px solid currentColor;
   border-radius: 50%;
   animation: spin 1s linear infinite;
+  margin-right: 8px;
+}
+
+/* Анимации */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 @keyframes spin {
@@ -246,17 +328,439 @@
   100% { transform: rotate(360deg); }
 }
 
-@media (max-width: 768px) {
-  .overlayForm {
-    padding: 25px 20px;
-    margin: 10px;
-  }
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
 
-  .overlayHeader h2 {
-    font-size: 1.7rem;
+/* Скроллбар */
+.overlayForm::-webkit-scrollbar {
+  width: 6px;
+}
+
+.overlayForm::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.4);
+  border-radius: 3px;
+}
+
+.overlayForm::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  border-radius: 3px;
+}
+
+.overlayForm::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+}
+
+/* Адаптивность */
+@media (max-width: 640px) {
+  .overlayForm {
+    margin: 20px;
+    padding: 24px;
+    width: calc(100% - 40px);
   }
 
   .formActions {
     flex-direction: column;
   }
+
+  .overlayHeader h2 {
+    font-size: 24px;
+  }
+}
+
+/* cometAddOverlay.module.css */
+
+/* ... предыдущие стили остаются без изменений ... */
+
+/* Превью изображения */
+.imagePreview {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.imagePreview img {
+  max-width: 100%;
+  max-height: 200px;
+  border-radius: 12px;
+  border: 2px solid rgba(99, 102, 241, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.imagePreview img:hover {
+  border-color: #6366f1;
+  transform: scale(1.02);
+}
+
+/* Секция проверки кометы */
+.cometCheckSection {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 16px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+
+.checkCometButton {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 14px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  width: 100%;
+  max-width: 250px;
+  position: relative;
+  overflow: hidden;
+}
+
+.checkCometButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.checkCometButton:hover::before {
+  left: 100%;
+}
+
+.checkCometButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow:
+          0 10px 25px rgba(245, 158, 11, 0.3),
+          0 0 30px rgba(245, 158, 11, 0.1);
+}
+
+.checkCometButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Результаты проверки кометы */
+.cometCheckSuccess {
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: #bbf7d0;
+  padding: 1rem;
+  border-radius: 12px;
+  margin-top: 1rem;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.1);
+  animation: slideDown 0.3s ease-out;
+}
+
+.cometCheckError {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #fecaca;
+  padding: 1rem;
+  border-radius: 12px;
+  margin-top: 1rem;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.1);
+  animation: slideDown 0.3s ease-out;
+}
+
+/* Новая анимация */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Адаптивность для новых элементов */
+@media (max-width: 640px) {
+  .cometCheckSection {
+    padding: 1rem;
+    margin-top: 1rem;
+  }
+
+  .checkCometButton {
+    max-width: 100%;
+    padding: 12px 20px;
+  }
+
+  .imagePreview img {
+    max-height: 150px;
+  }
+}
+
+/* ... предыдущие стили остаются ... */
+
+/* Информация о процессе */
+.processInfo {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: 12px;
+  color: #bbf7d0;
+  font-size: 14px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+
+.processInfo p {
+  margin: 0.5rem 0;
+}
+
+.imageUrlInfo {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.imageLink {
+  color: #60a5fa;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.imageLink:hover {
+  color: #93c5fd;
+  text-decoration: underline;
+}
+
+/* ... предыдущие стили остаются ... */
+
+/* Оверлей загрузки поверх превью */
+.uploadOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  border-radius: 12px;
+  backdrop-filter: blur(5px);
+}
+
+.uploadOverlay .loadingSpinner {
+  width: 30px;
+  height: 30px;
+  border: 2px solid transparent;
+  border-top: 2px solid #6366f1;
+  border-right: 2px solid #8b5cf6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 10px;
+}
+
+.uploadOverlay span {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Позиционирование для превью с оверлеем */
+.imagePreview {
+  position: relative;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.imagePreview img {
+  max-width: 100%;
+  max-height: 200px;
+  border-radius: 12px;
+  border: 2px solid rgba(99, 102, 241, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+/* Секция проверки кометы */
+.cometCheckSection {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 16px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  animation: slideDown 0.3s ease-out;
+}
+
+.cometCheckSuccess {
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: #bbf7d0;
+  padding: 1rem;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.1);
+}
+
+.cometCheckError {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #fecaca;
+  padding: 1rem;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.1);
+}
+
+.imageUrlInfo {
+  margin-top: 1rem;
+}
+
+.imageLink {
+  color: #60a5fa;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+  font-size: 14px;
+}
+
+.imageLink:hover {
+  color: #93c5fd;
+  text-decoration: underline;
+}
+
+/* Информация о процессе */
+.processInfo {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: 12px;
+  color: #bbf7d0;
+  font-size: 14px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+
+.processInfo p {
+  margin: 0.5rem 0;
+}
+
+/* Новая анимация */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Адаптивность для новых элементов */
+@media (max-width: 640px) {
+  .cometCheckSection {
+    padding: 1rem;
+    margin-top: 1rem;
+  }
+
+  .imagePreview img {
+    max-height: 150px;
+  }
+
+  .uploadOverlay {
+    padding: 1rem;
+  }
+
+  .uploadOverlay span {
+    font-size: 12px;
+  }
+}
+
+/* ... предыдущие стили остаются ... */
+
+/* Стиль для предупреждения о проверке кометы */
+.cometCheckWarning {
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  color: #fde68a;
+  padding: 1rem;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.1);
+}
+
+/* Заблокированная кнопка отправки */
+.submitButtonDisabled {
+  flex: 1;
+  padding: 16px 24px;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: not-allowed;
+  background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+  color: #94a3b8;
+  border: 1px solid rgba(100, 116, 139, 0.3);
+  opacity: 0.6;
+}
+
+/* Стиль для предупреждающих сообщений */
+.overlayWarning {
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-radius: 12px;
+  padding: 16px;
+  color: #fde68a;
+  font-size: 14px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  animation: shake 0.5s ease-in-out;
+}
+
+/* Информационное сообщение о блокировке */
+.warningInfo {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-radius: 12px;
+  color: #fde68a;
+  font-size: 14px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+
+.warningInfo p {
+  margin: 0.5rem 0;
+}
+
+/* Анимация для предупреждений */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
 }
