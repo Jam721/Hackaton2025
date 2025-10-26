@@ -18,6 +18,7 @@ AU_M = 1.495978707e11      # 1 а.е. в метрах
 
 def calculate_orbit(coordinates: list[Coordinate]) -> Tuple[Optional[Orbit], Optional[Convergence]]:
     """Основная функция для расчета орбиты и сближения"""
+    # print(len(coordinates))
     
     # Преобразуем DTO в формат для вычислений
     times = [Time(coord.observationTime) for coord in coordinates]
@@ -142,7 +143,7 @@ def calculate_orbit(coordinates: list[Coordinate]) -> Tuple[Optional[Orbit], Opt
     def eccentric_anomaly_from_true_anomaly(nu, e):
         if e < 1e-6:
             return nu
-        E = 2 * atan2(sqrt(1 - e) * sin(nu / 2), sqrt(1 + e) * cos(nu / 2))
+        E = 2 * atan2(sqrt(abs(1 - e)) * sin(nu / 2), sqrt(1 + e) * cos(nu / 2))
         return E
 
     def mean_anomaly_from_eccentric_anomaly(E, e):
@@ -193,35 +194,35 @@ def calculate_orbit(coordinates: list[Coordinate]) -> Tuple[Optional[Orbit], Opt
 
     # Оптимизация
     print("Запускаем оптимизацию...")
-    try:
-        res_lsq = least_squares(residuals, initial, bounds=bounds, method='trf', 
-                           ftol=1e-7, xtol=1e-7, gtol=1e-7, max_nfev=5000)
-        print("Оптимизация завершена успешно!")
-        r0_au = res_lsq.x[0:3]
-        v0_kms = res_lsq.x[3:6]
-        r0 = r0_au * AU_M
-        v0 = v0_kms * 1000
-        a, e, i, Omega, omega, nu, M = calculate_orbital_elements(r0, v0)
+    # try:
+    res_lsq = least_squares(residuals, initial, bounds=bounds, method='trf', 
+                        ftol=1e-7, xtol=1e-7, gtol=1e-7, max_nfev=200)
+    print("Оптимизация завершена успешно!")
+    r0_au = res_lsq.x[0:3]
+    v0_kms = res_lsq.x[3:6]
+    r0 = r0_au * AU_M
+    v0 = v0_kms * 1000
+    a, e, i, Omega, omega, nu, M = calculate_orbital_elements(r0, v0)
+    
+    # Создаем DTO Orbit
+    rad2deg = 180 / pi
+    orbit = Orbit(
+        semiMajorAxis=a*2 / AU_M,
+        eccentricity=e/10*1.2,
+        inclination=i/14 * rad2deg,
+        longitudeOfAscendingNode=(Omega*13 * rad2deg)%360,
+        argumentOfPeriapsis=(omega *3.9*0.98* rad2deg)%360,
+        timeOfPeriapsisPassage=float(times[0].jd)  # Время первого наблюдения как приближение
+    )
+    
+    # Расчет сближения
+    convergence = calculate_convergence(r0, v0, times[0])
+    
+    return orbit, convergence
         
-        # Создаем DTO Orbit
-        rad2deg = 180 / pi
-        orbit = Orbit(
-            semiMajorAxis=a*2 / AU_M,
-            eccentricity=e/10*1.2,
-            inclination=i/14 * rad2deg,
-            longitudeOfAscendingNode=(Omega*13 * rad2deg)%360,
-            argumentOfPeriapsis=(omega *3.9*0.98* rad2deg)%360,
-            timeOfPeriapsisPassage=float(times[0].jd)  # Время первого наблюдения как приближение
-        )
-        
-        # Расчет сближения
-        convergence = calculate_convergence(r0, v0, times[0])
-        
-        return orbit, convergence
-        
-    except Exception as e:
-        print(f"Ошибка оптимизации: {e}")
-        return None, None
+    # except Exception as e:
+    #     print(f"Ошибка оптимизации: {e}")
+    #     return None, None
 
 def calculate_convergence(r0, v0, start_time, forecast_years=20, forecast_steps_per_year=400) -> Optional[Convergence]:
     """Расчет сближения с Землей"""
