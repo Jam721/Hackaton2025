@@ -11,7 +11,8 @@ async function handleCreateCometApi(params) {
   if (params.Discoverer) formData.append("Discoverer", params.Discoverer);
   if (params.File) formData.append("File", params.File);
 
-  const response = await fetch("/api/comet/create", {
+  //todo
+  const response = await fetch("/api/comet/create", { 
     method: "POST",
     headers: {
       Authorization: `Bearer ${localStorage.getItem('authToken') || ''}`

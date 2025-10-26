@@ -14,14 +14,14 @@ export function Register() {
     e.preventDefault();
     setError('');
     setIsLoading(true);
-
+    //todo
     try {
       const formData = new FormData();
       formData.append('UserName', username);
       formData.append('Email', email);
       formData.append('Password', password);
 
-      const response = await fetch('http://localhost:5124/identity/User/Register', {
+      const response = await fetch('{}/identity/User/Register', {
         method: 'POST',
         body: formData,
       });

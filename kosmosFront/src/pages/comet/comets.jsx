@@ -37,6 +37,7 @@ export function AllComets() {
   const [error, setError] = useState("");
   const [showAddOverlay, setShowAddOverlay] = useState(false);
 
+  //todo
   useEffect(() => {
     async function loadData() {
       setLoading(true);

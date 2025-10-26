@@ -13,8 +13,9 @@ export function Login() {
     setError('');
     setIsLoading(true);
 
+    //todo
     try {
-      const response = await fetch('http://localhost:5124/identity/User/Login', {
+      const response = await fetch('{}/identity/User/Login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         credentials: 'include',
